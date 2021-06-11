@@ -1,50 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-import Login from './components/Login'
-import React, { useState } from 'react';
+import React, { Fragment } from 'react'
+import Header from './components/Header'
+import PlayersList from './components/PlayersList'
+import './App.css'
 
-function App() {
-  const [token, setToken] = useState();
-  if (!token) {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            <Login setToken={setToken} />
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-          </a>
-        </header>
-      </div>
-    );
-  }
-
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
-      </header>
-    </div>
-
+    <Fragment>
+      <Header />
+      <PlayersList />
+    </Fragment>
   )
-
-
 }
 
-export default App;
+export default App
