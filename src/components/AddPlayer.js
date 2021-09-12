@@ -1,26 +1,25 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import { addPlayerRequest } from "./../actions/player"
+import { connect } from "react-redux";
 
-const AddPlayer = props => {
-
-  const addPlayer = props.addPlayerFunc
+const AddPlayer = (props) => {
 
   const [name, setName] = useState('')
 
-  const changeName = event => {
-    setName(event.target.value)
-  }
+    const changeName = event => {
+      setName(event.target.value)
+    }
 
-  const addAPlayer = event => {
+  const onHandleAddAPlayer = event => {
     event.preventDefault()
     if (name !== '') {
-      addPlayer(name)
+      props.onAddPlayerRequest(name)
       setName('')
     }
   }
 
   return (
-    <form className='form' onSubmit={addAPlayer}>
+    <form className='form' onSubmit={(onHandleAddAPlayer)}>
       <input
         className='form-control col-2'
         type='text'
@@ -32,13 +31,15 @@ const AddPlayer = props => {
       />
       <input type='submit' value='Thêm' className='btn btn-primary col-2' />
     </form>
-
-
   )
 }
 
-AddPlayer.propTypes = {
-  addPlayerFunc: PropTypes.func.isRequired
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddPlayerRequest: (name) => {
+      dispatch(addPlayerRequest(name))
+    }
+  };
+};
 
-export default AddPlayer
+export default connect(null, mapDispatchToProps)(AddPlayer)

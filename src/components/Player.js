@@ -1,32 +1,45 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { deletePlayerRequest, markOnTheFieldRequest } from "./../actions/player"
+import { connect } from "react-redux";
 
 const Player = props => {
-  const player = props.playerProps
-  const markOnTheField = props.markOnTheFieldFunc
-  const deletePlayer = props.deletePlayerFunc
+  const player = props.playerProps  
 
-  // Return
+  const onHandleMarkOnTheFfield = (player) => {
+    props.onMarkOnTheFieldRequest(player)
+  }
+  const onHandleDeletePlayer = (id) => {
+    props.onDeletePlayerRequest(id)
+  }
   return (
     <div className='m-2 border bg-light'>
       <input
         className='form-check-input'
         type='checkbox'
-        onChange={markOnTheField.bind(this, player.id)}
+        onChange={() => onHandleMarkOnTheFfield(player)}
         checked={player.onTheField}
       />
       <label className='label'>  ({player.id}) {player.name}</label>
-      <button className='btn-danger' style={{ 'float': 'right' }} onClick={deletePlayer.bind(this, player.id)}>
+      <button className='btn-danger' style={{ 'float': 'right' }} onClick={() => onHandleDeletePlayer(player.id)}>
         Xoá
       </button>
     </div>
   )
 }
 
-Player.propTypes = {
-  playerProps: PropTypes.object.isRequired,
-  markPassFunc: PropTypes.func,
-  deletePlayerFunc: PropTypes.func.isRequired
+function mapStateToProps(state) {
+  return { list: state.list };
 }
 
-export default Player
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDeletePlayerRequest: (id) => {
+      dispatch(deletePlayerRequest(id));
+    },
+    onMarkOnTheFieldRequest: (player) => {
+      dispatch(markOnTheFieldRequest(player))
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Player)
