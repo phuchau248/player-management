@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { addPlayerRequest } from "./../actions/player"
 import { connect } from "react-redux";
+import { addPlayer } from "./playerActions";
 
 const AddPlayer = (props) => {
 
@@ -37,7 +37,7 @@ const AddPlayer = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddPlayerRequest: (name) => {
-      dispatch(addPlayerRequest(name))
+      dispatch(addPlayer(name))
     }
   };
 };

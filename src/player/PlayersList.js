@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react'
 import AddPlayer from './AddPlayer'
 import Player from './Player';
 import { connect } from "react-redux";
-import { getPlayerRequest } from "./../actions/player";
+import { getPlayer } from "./../player/playerActions";
 
 const PlayersList = (props) => {
 
@@ -26,13 +26,13 @@ const PlayersList = (props) => {
 }
 
 function mapStateToProps(state) {
-    return { list: state.list };
+    return { list: state.playerReducer.list };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getPlayerRequest: () => {
-            dispatch(getPlayerRequest());
+            dispatch(getPlayer());
         },
     };
 };

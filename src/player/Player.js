@@ -1,6 +1,6 @@
 import React from 'react'
-import { deletePlayerRequest, markOnTheFieldRequest } from "./../actions/player"
 import { connect } from "react-redux";
+import { deletePlayer,  markOnTheField } from "./../player/playerActions";
 
 const Player = props => {
   const player = props.playerProps  
@@ -28,18 +28,19 @@ const Player = props => {
 }
 
 function mapStateToProps(state) {
-  return { list: state.list };
+  return { list: state.playerReducer.list };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onDeletePlayerRequest: (id) => {
-      dispatch(deletePlayerRequest(id));
+      dispatch(deletePlayer(id));
     },
     onMarkOnTheFieldRequest: (player) => {
-      dispatch(markOnTheFieldRequest(player))
+      dispatch(markOnTheField(player))
     }
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player)
+  

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import Header from './components/Header'
-import PlayersList from './components/PlayersList'
+import Header from '../header/Header'
+import PlayersList from '../player/PlayersList'
 import './App.css'
 
 const App = () => {
