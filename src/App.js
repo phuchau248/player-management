@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react'
 import Header from './components/Header'
-import PlayersList from './components/PlayersList'
+import TasksList from './components/TaskList'
 import './App.css'
 
 const App = () => {
   return (
     <Fragment>
       <Header />
-      <PlayersList />
+      <TasksList />
     </Fragment>
   )
 }
